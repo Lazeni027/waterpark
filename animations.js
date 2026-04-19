@@ -481,9 +481,9 @@ console.log('🌊 WATERPARK MODERN ANIMATIONS ACTIVÉES ! Amusez-vous bien sur m
 
 
 
-// ========== JEU WATERPARK : ATTRAPE LES GOUTTES ! ==========
+// ========== JEU WATERPARK RESPONSIVE (TOUS ÉCRANS) ==========
 
-// 1. CRÉER LE BOUTON DU JEU
+// 1. CRÉER LE BOUTON DU JEU (position responsive)
 const gameButton = document.createElement('button');
 gameButton.innerHTML = '🎮 JOUER 🎮';
 gameButton.style.position = 'fixed';
@@ -493,15 +493,16 @@ gameButton.style.transform = 'translateX(-50%)';
 gameButton.style.backgroundColor = '#FF8C42';
 gameButton.style.color = 'white';
 gameButton.style.border = 'none';
-gameButton.style.padding = '12px 25px';
+gameButton.style.padding = 'clamp(10px, 4vw, 15px) clamp(20px, 6vw, 30px)';
 gameButton.style.borderRadius = '50px';
-gameButton.style.fontSize = '16px';
+gameButton.style.fontSize = 'clamp(14px, 4vw, 18px)';
 gameButton.style.fontWeight = 'bold';
 gameButton.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
 gameButton.style.zIndex = '1000';
 gameButton.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
 gameButton.style.cursor = 'pointer';
 gameButton.style.animation = 'pulse 2s infinite';
+gameButton.style.whiteSpace = 'nowrap';
 document.body.appendChild(gameButton);
 
 // 2. VARIABLES DU JEU
@@ -510,12 +511,10 @@ let score = 0;
 let drops = [];
 let gameInterval;
 
-// 3. CRÉER L'INTERFACE DU JEU
+// 3. CRÉER L'INTERFACE DU JEU (responsive)
 function createGameUI() {
-  // Masquer le bouton jouer
   gameButton.style.display = 'none';
   
-  // Créer le conteneur du jeu
   const gameContainer = document.createElement('div');
   gameContainer.id = 'waterGame';
   gameContainer.style.position = 'fixed';
@@ -523,7 +522,7 @@ function createGameUI() {
   gameContainer.style.left = '0';
   gameContainer.style.width = '100%';
   gameContainer.style.height = '100%';
-  gameContainer.style.backgroundColor = 'rgba(0, 119, 190, 0.9)';
+  gameContainer.style.backgroundColor = 'rgba(0, 119, 190, 0.95)';
   gameContainer.style.zIndex = '10000';
   gameContainer.style.display = 'flex';
   gameContainer.style.flexDirection = 'column';
@@ -532,105 +531,118 @@ function createGameUI() {
   gameContainer.style.backdropFilter = 'blur(5px)';
   document.body.appendChild(gameContainer);
   
-  // Score
+  // Score (position responsive)
   const scoreDisplay = document.createElement('div');
   scoreDisplay.id = 'gameScore';
   scoreDisplay.innerHTML = '💧 SCORE: 0 💧';
   scoreDisplay.style.position = 'absolute';
-  scoreDisplay.style.top = '50px';
-  scoreDisplay.style.left = '20px';
+  scoreDisplay.style.top = 'clamp(10px, 5vh, 50px)';
+  scoreDisplay.style.left = 'clamp(10px, 5vw, 20px)';
   scoreDisplay.style.backgroundColor = 'white';
-  scoreDisplay.style.padding = '10px 20px';
+  scoreDisplay.style.padding = 'clamp(8px, 3vw, 12px) clamp(15px, 5vw, 25px)';
   scoreDisplay.style.borderRadius = '50px';
   scoreDisplay.style.fontWeight = 'bold';
-  scoreDisplay.style.fontSize = '18px';
+  scoreDisplay.style.fontSize = 'clamp(14px, 4vw, 20px)';
   scoreDisplay.style.color = '#0077BE';
   scoreDisplay.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+  scoreDisplay.style.zIndex = '10001';
   gameContainer.appendChild(scoreDisplay);
   
-  // Timer
+  // Timer (position responsive)
   const timerDisplay = document.createElement('div');
   timerDisplay.id = 'gameTimer';
-  timerDisplay.innerHTML = '⏱️ TEMPS: 30s ⏱️';
+  timerDisplay.innerHTML = '⏱️ 30s ⏱️';
   timerDisplay.style.position = 'absolute';
-  timerDisplay.style.top = '50px';
-  timerDisplay.style.right = '20px';
+  timerDisplay.style.top = 'clamp(10px, 5vh, 50px)';
+  timerDisplay.style.right = 'clamp(10px, 5vw, 20px)';
   timerDisplay.style.backgroundColor = 'white';
-  timerDisplay.style.padding = '10px 20px';
+  timerDisplay.style.padding = 'clamp(8px, 3vw, 12px) clamp(15px, 5vw, 25px)';
   timerDisplay.style.borderRadius = '50px';
   timerDisplay.style.fontWeight = 'bold';
-  timerDisplay.style.fontSize = '18px';
+  timerDisplay.style.fontSize = 'clamp(14px, 4vw, 20px)';
   timerDisplay.style.color = '#0077BE';
   timerDisplay.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+  timerDisplay.style.zIndex = '10001';
   gameContainer.appendChild(timerDisplay);
   
-  // Instructions
+  // Instructions (responsive)
   const instructions = document.createElement('div');
-  instructions.innerHTML = '👆 TAPOTE SUR LES GOUTTES BLEUES ! 👆';
+  instructions.innerHTML = '👆 TAPOTE SUR LES GOUTTES ! 👆';
   instructions.style.position = 'absolute';
-  instructions.style.bottom = '50px';
+  instructions.style.bottom = 'clamp(60px, 10vh, 80px)';
   instructions.style.left = '50%';
   instructions.style.transform = 'translateX(-50%)';
   instructions.style.backgroundColor = '#FFC107';
-  instructions.style.padding = '10px 20px';
+  instructions.style.padding = 'clamp(8px, 3vw, 12px) clamp(15px, 5vw, 25px)';
   instructions.style.borderRadius = '50px';
   instructions.style.fontWeight = 'bold';
-  instructions.style.fontSize = '14px';
+  instructions.style.fontSize = 'clamp(12px, 3.5vw, 16px)';
   instructions.style.color = '#1A2C3E';
   instructions.style.whiteSpace = 'nowrap';
+  instructions.style.zIndex = '10001';
   gameContainer.appendChild(instructions);
   
-  // Bouton quitter
+  // Bouton quitter (responsive)
   const quitButton = document.createElement('button');
-  quitButton.innerHTML = '❌ QUITTER';
+  quitButton.innerHTML = '❌';
   quitButton.style.position = 'absolute';
-  quitButton.style.bottom = '20px';
-  quitButton.style.right = '20px';
+  quitButton.style.bottom = 'clamp(15px, 3vh, 25px)';
+  quitButton.style.right = 'clamp(15px, 3vw, 25px)';
   quitButton.style.backgroundColor = '#FF4444';
   quitButton.style.color = 'white';
   quitButton.style.border = 'none';
-  quitButton.style.padding = '10px 20px';
+  quitButton.style.padding = 'clamp(10px, 3vw, 15px) clamp(15px, 4vw, 20px)';
   quitButton.style.borderRadius = '50px';
   quitButton.style.fontWeight = 'bold';
+  quitButton.style.fontSize = 'clamp(16px, 4vw, 20px)';
   quitButton.style.cursor = 'pointer';
+  quitButton.style.zIndex = '10001';
   quitButton.addEventListener('click', endGame);
   gameContainer.appendChild(quitButton);
   
   return gameContainer;
 }
 
-// 4. CRÉER UNE GOUTTE À ATTRAPER
+// 4. CRÉER UNE GOUTTE (taille responsive)
 function createGameDrop() {
   const drop = document.createElement('div');
   drop.className = 'gameDrop';
-  const size = 30 + Math.random() * 20;
+  
+  // Taille responsive : entre 25px et 60px selon l'écran
+  const minSize = window.innerWidth < 768 ? 25 : 35;
+  const maxSize = window.innerWidth < 768 ? 45 : 65;
+  const size = minSize + Math.random() * (maxSize - minSize);
+  
   drop.style.position = 'absolute';
   drop.style.width = size + 'px';
   drop.style.height = size + 'px';
   drop.style.background = 'radial-gradient(circle at 30% 30%, #0077BE, #2EBD6E)';
   drop.style.borderRadius = '50%';
-  drop.style.left = Math.random() * (window.innerWidth - 80) + 'px';
+  
+  // Position horizontale responsive (évite les bords)
+  const maxLeft = window.innerWidth - size - 20;
+  drop.style.left = (20 + Math.random() * maxLeft) + 'px';
   drop.style.top = '-50px';
   drop.style.cursor = 'pointer';
   drop.style.zIndex = '10001';
   drop.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
   drop.style.transition = 'transform 0.1s ease';
   
-  // Ajouter un emoji eau à l'intérieur
+  // Ajouter un emoji eau à l'intérieur (taille responsive)
   const emoji = document.createElement('div');
   emoji.innerHTML = '💧';
-  emoji.style.fontSize = (size * 0.6) + 'px';
+  emoji.style.fontSize = (size * 0.5) + 'px';
   emoji.style.position = 'absolute';
   emoji.style.top = '50%';
   emoji.style.left = '50%';
   emoji.style.transform = 'translate(-50%, -50%)';
   drop.appendChild(emoji);
   
-  // Animation de chute
-  const duration = 2 + Math.random() * 2;
+  // Animation de chute (plus rapide sur petit écran)
+  const duration = window.innerWidth < 768 ? 1.5 + Math.random() * 1.5 : 2 + Math.random() * 2;
   drop.style.animation = `dropFall ${duration}s linear forwards`;
   
-  // Au clic sur la goutte
+  // Événements tactiles et souris
   drop.addEventListener('click', (e) => {
     e.stopPropagation();
     catchDrop(drop);
@@ -651,47 +663,53 @@ function catchDrop(drop) {
   
   score++;
   const scoreDisplay = document.getElementById('gameScore');
-  scoreDisplay.innerHTML = `💧 SCORE: ${score} 💧`;
+  if(scoreDisplay) {
+    scoreDisplay.innerHTML = `💧 SCORE: ${score} 💧`;
+  }
   
   // Effet visuel
   drop.style.transform = 'scale(0)';
   drop.style.transition = 'transform 0.1s ease';
   
   // Effet d'éclaboussure
-  createSplashEffect(drop.getBoundingClientRect().left, drop.getBoundingClientRect().top);
+  const rect = drop.getBoundingClientRect();
+  createSplashEffect(rect.left, rect.top);
   
   setTimeout(() => {
     if(drop.parentNode) drop.remove();
   }, 100);
   
-  // Ajouter +1 bonheur au jeu principal
+  // Ajouter +1 bonheur
   if(typeof increaseHappiness === 'function') {
     increaseHappiness(1);
   }
 }
 
-// 6. EFFET D'ÉCLABOUSSURE
+// 6. EFFET D'ÉCLABOUSSURE (responsive)
 function createSplashEffect(x, y) {
-  for(let i = 0; i < 8; i++) {
+  const gameContainer = document.getElementById('waterGame');
+  if(!gameContainer) return;
+  
+  for(let i = 0; i < 6; i++) {
     const splash = document.createElement('div');
-    splash.style.position = 'fixed';
-    splash.style.left = x + 15 + 'px';
-    splash.style.top = y + 15 + 'px';
+    splash.style.position = 'absolute';
+    splash.style.left = (x + 15) + 'px';
+    splash.style.top = (y + 15) + 'px';
     splash.style.width = '4px';
     splash.style.height = '4px';
     splash.style.backgroundColor = '#0077BE';
     splash.style.borderRadius = '50%';
     splash.style.pointerEvents = 'none';
     splash.style.zIndex = '10002';
-    const angle = (i * 45) * Math.PI / 180;
-    const distance = 30;
+    const angle = (i * 60) * Math.PI / 180;
+    const distance = 25;
     const dx = Math.cos(angle) * distance;
     const dy = Math.sin(angle) * distance;
-    splash.style.animation = `splashOut 0.5s ease-out forwards`;
+    splash.style.animation = `splashOut 0.4s ease-out forwards`;
     splash.style.setProperty('--dx', dx + 'px');
     splash.style.setProperty('--dy', dy + 'px');
-    document.getElementById('waterGame')?.appendChild(splash);
-    setTimeout(() => splash.remove(), 500);
+    gameContainer.appendChild(splash);
+    setTimeout(() => splash.remove(), 400);
   }
 }
 
@@ -704,26 +722,28 @@ function startGame() {
   let timeLeft = 30;
   const timerDisplay = document.getElementById('gameTimer');
   
-  // Créer des gouttes toutes les 0.8 secondes
+  // Créer des gouttes (cadence adaptée)
+  const dropInterval = window.innerWidth < 768 ? 600 : 800;
   gameInterval = setInterval(() => {
-    if(gameActive) {
+    if(gameActive && document.getElementById('waterGame')) {
       const drop = createGameDrop();
-      gameContainer.appendChild(drop);
+      document.getElementById('waterGame')?.appendChild(drop);
       drops.push(drop);
       
-      // Nettoyer les gouttes qui sont sorties
       setTimeout(() => {
-        if(drop.parentNode) drop.remove();
-        drops = drops.filter(d => d.parentNode);
-      }, 3000);
+        if(drop && drop.parentNode) drop.remove();
+        drops = drops.filter(d => d && d.parentNode);
+      }, 4000);
     }
-  }, 800);
+  }, dropInterval);
   
   // Timer
   const timerInterval = setInterval(() => {
-    if(gameActive) {
+    if(gameActive && document.getElementById('waterGame')) {
       timeLeft--;
-      timerDisplay.innerHTML = `⏱️ TEMPS: ${timeLeft}s ⏱️`;
+      if(timerDisplay) {
+        timerDisplay.innerHTML = `⏱️ ${timeLeft}s ⏱️`;
+      }
       
       if(timeLeft <= 0) {
         clearInterval(timerInterval);
@@ -735,29 +755,51 @@ function startGame() {
   }, 1000);
 }
 
-// 8. FIN DU JEU
+// 8. FIN DU JEU (responsive)
 function endGame() {
   gameActive = false;
   clearInterval(gameInterval);
   
   const gameContainer = document.getElementById('waterGame');
   if(gameContainer) {
-    // Afficher le score final
     gameContainer.innerHTML = '';
     gameContainer.style.justifyContent = 'center';
     gameContainer.style.alignItems = 'center';
+    gameContainer.style.padding = '20px';
+    
+    // Message responsive
+    let message = '';
+    let emoji = '';
+    if(score >= 30) {
+      message = 'CHAMPION ! 🏆';
+      emoji = '🏆';
+    } else if(score >= 20) {
+      message = 'SUPER ! ⭐';
+      emoji = '⭐';
+    } else if(score >= 10) {
+      message = 'BIEN JOUE ! 👍';
+      emoji = '👍';
+    } else {
+      message = 'ENCORE UN ESSAI ? 💪';
+      emoji = '💪';
+    }
     
     const finalScore = document.createElement('div');
+    finalScore.style.width = '90%';
+    finalScore.style.maxWidth = '400px';
+    finalScore.style.textAlign = 'center';
+    finalScore.style.backgroundColor = 'white';
+    finalScore.style.padding = 'clamp(20px, 8vw, 40px)';
+    finalScore.style.borderRadius = '30px';
+    finalScore.style.margin = '20px';
     finalScore.innerHTML = `
-      <div style="text-align: center; background: white; padding: 40px; border-radius: 30px; margin: 20px;">
-        <div style="font-size: 64px; margin-bottom: 20px;">💧</div>
-        <div style="font-size: 32px; font-weight: bold; color: #0077BE; margin-bottom: 10px;">SCORE FINAL</div>
-        <div style="font-size: 48px; font-weight: bold; color: #FF8C42;">${score}</div>
-        <div style="font-size: 18px; color: #1A2C3E; margin: 20px 0;">
-          ${score >= 30 ? '🏆 CHAMPION ! 🏆' : (score >= 20 ? '⭐ SUPER ! ⭐' : (score >= 10 ? '👍 BIEN JOUE ! 👍' : '💪 ENCORE UN ESSAI ? 💪'))}
-        </div>
-        <button id="replayGame" style="background: #2EBD6E; color: white; border: none; padding: 12px 30px; border-radius: 50px; font-size: 18px; font-weight: bold; margin: 10px; cursor: pointer;">🎮 REJOUER</button>
-        <button id="closeGame" style="background: #FF8C42; color: white; border: none; padding: 12px 30px; border-radius: 50px; font-size: 18px; font-weight: bold; margin: 10px; cursor: pointer;">❌ FERMER</button>
+      <div style="font-size: clamp(40px, 15vw, 80px); margin-bottom: 20px;">${emoji}</div>
+      <div style="font-size: clamp(20px, 6vw, 32px); font-weight: bold; color: #0077BE; margin-bottom: 10px;">SCORE FINAL</div>
+      <div style="font-size: clamp(36px, 12vw, 64px); font-weight: bold; color: #FF8C42;">${score}</div>
+      <div style="font-size: clamp(14px, 4vw, 18px); color: #1A2C3E; margin: 20px 0;">${message}</div>
+      <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <button id="replayGame" style="background: #2EBD6E; color: white; border: none; padding: clamp(10px, 3vw, 12px) clamp(20px, 6vw, 30px); border-radius: 50px; font-size: clamp(14px, 4vw, 16px); font-weight: bold; cursor: pointer;">🎮 REJOUER</button>
+        <button id="closeGame" style="background: #FF8C42; color: white; border: none; padding: clamp(10px, 3vw, 12px) clamp(20px, 6vw, 30px); border-radius: 50px; font-size: clamp(14px, 4vw, 16px); font-weight: bold; cursor: pointer;">❌ FERMER</button>
       </div>
     `;
     gameContainer.appendChild(finalScore);
@@ -776,7 +818,7 @@ function endGame() {
   gameButton.style.display = 'block';
 }
 
-// 9. AJOUTER LES ANIMATIONS CSS
+// 9. STYLES CSS RESPONSIVES
 const gameStyles = document.createElement('style');
 gameStyles.textContent = `
   @keyframes dropFall {
@@ -806,7 +848,7 @@ gameStyles.textContent = `
       transform: translateX(-50%) scale(1);
     }
     50% {
-      transform: translateX(-50%) scale(1.1);
+      transform: translateX(-50%) scale(1.05);
     }
   }
   
@@ -814,21 +856,25 @@ gameStyles.textContent = `
     animation: dropFall linear forwards;
   }
   
-  .gameDrop:hover {
-    transform: scale(1.1);
+  .gameDrop:active {
+    transform: scale(0.95);
   }
   
-  .gameDrop:active {
-    transform: scale(0.9);
+  /* Responsive touch */
+  @media (max-width: 768px) {
+    .gameDrop {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
   }
 `;
 document.head.appendChild(gameStyles);
 
-// 10. LANCER LE JEU AU CLIC
+// 10. LANCER LE JEU
 gameButton.addEventListener('click', startGame);
 gameButton.addEventListener('touchstart', (e) => {
   e.preventDefault();
   startGame();
 });
 
-console.log('🎮 JEU WATERPARK PRÊT ! Cliquez sur JOUER !');
+console.log('🎮 JEU WATERPARK RESPONSIVE PRÊT !');
