@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>PORO WATERPARK | Centre aquatique & loisirs</title>
+  <!-- POLICES EXCEPTIONNELLES ET LISIBLES : Plus Jakarta Sans + Space Grotesk -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #FFFFFF;
+      color: #1A2C3E;
+      scroll-behavior: smooth;
+      line-height: 1.5;
+    }
+
+    /* ========== PALETTE VIVANTE : BLEU / JAUNE / VERT / BLANC ========== */
+    :root {
+      --blue-primary: #0077BE;
+      --blue-light: #0a8ad9db;
+      --yellow-bright: #FFC107;
+      --yellow-soft: #FFF2CC;
+      --green-fresh: #177240e5;
+      --green-mint: #E0F7EA;
+      --white-pure: #FFFFFF;
+      --gray-light: #F8FAFE;
+      --dark-text: #040850;
+      --orange-accent: #FF8C42;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 30px;
+    }
+
+    /* ========== EN-TÊTE CLASSIQUE ========== */
+    .header-classic {
+      background: var(--blue-primary);
+      padding: 1rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-bottom: 3px solid var(--yellow-bright);
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .logo h1 {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.5px;
+    }
+    .logo h1 span {
+      color: var(--yellow-bright);
+    }
+    .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: rgba(255,255,255,0.15);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+    }
+    .contact-info i {
+      font-size: 1.2rem;
+      color: var(--yellow-bright);
+    }
+    .contact-info a, .contact-info span {
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero bannière simple */
+    .hero-simple {
+      background: linear-gradient(110deg, #F0F9FF 0%, #E6F7F0 100%);
+      padding: 2rem 0;
+      text-align: center;
+      border-bottom: 1px solid #D4EAF5;
+    }
+    .hero-simple h2 {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--blue-primary);
+      margin-bottom: 0.5rem;
+    }
+    .hero-simple p {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #2c5a6e;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .badge-simple {
+      display: inline-flex;
+      gap: 12px;
+      background: white;
+      padding: 0.4rem 1.5rem;
+      border-radius: 60px;
+      margin-top: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      font-weight: 600;
+      color: var(--blue-primary);
+    }
+
+    /* Titres de section */
+    .section-title {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 2rem 0 1.5rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 4px solid var(--yellow-bright);
+      display: inline-block;
+      color: var(--blue-primary);
+    }
+    .section-title i {
+      color: var(--green-fresh);
+      margin-right: 8px;
+    }
+
+    /* GRILLE ACTIVITES */
+    .activities-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0 2.5rem;
+    }
+    .card {
+      background: var(--white-pure);
+      border-radius: 1.5rem;
+      width: 290px;
+      overflow: hidden;
+      transition: 0.3s ease;
+      box-shadow: 0 12px 24px rgba(0, 119, 190, 0.08);
+      border: 1px solid #E2EDF7;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 32px -12px rgba(0,119,190,0.25);
+      border-color: var(--yellow-bright);
+    }
+    .card-img {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+    }
+    .card-info {
+      padding: 1.2rem;
+    }
+    .card-info h3 {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--blue-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .price {
+      font-weight: 700;
+      background: var(--yellow-soft);
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      color: #C46D00;
+      margin: 4px 0;
+    }
+    .day-note {
+      font-size: 0.72rem;
+      color: #4A6A7F;
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    /* Packs */
+    .packs-wrapper {
+      background: var(--gray-light);
+      border-radius: 1.8rem;
+      padding: 1.8rem;
+      margin: 2rem 0;
+      border: 1px solid #CFE5F0;
+    }
+    .packs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.8rem;
+      margin: 1.5rem 0;
+    }
+    .pack-item {
+      background: white;
+      padding: 1.2rem;
+      border-radius: 1.2rem;
+      border-left: 7px solid var(--green-fresh);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.03);
+    }
+    .pack-item strong {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 1.35rem;
+      color: var(--blue-primary);
+      display: block;
+    }
+    .pack-price {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #FF8C42;
+      margin: 8px 0;
+    }
+    hr {
+      margin: 10px 0;
+      border: 0;
+      height: 1px;
+      background: #FFE0A3;
+    }
+    .info-pack {
+      background: #FFF6E5;
+      border-radius: 50px;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* Restauration */
+    .resto-card {
+      background: var(--white-pure);
+      border-radius: 1.8rem;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border: 1px solid #DCF0E4;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.03);
+    }
+    .flex-food {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      margin-top: 1rem;
+    }
+    .food-col {
+      flex: 1;
+      min-width: 200px;
+      background: #FEFCF5;
+      padding: 1rem;
+      border-radius: 1rem;
+      border: 1px solid #FFE6B3;
+    }
+    .food-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #F0E0C0;
+      font-weight: 500;
+    }
+
+    /* Bouton WhatsApp */
+    .btn-wa {
+      background: #25D366;
+      border: none;
+      padding: 14px 32px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      border-radius: 50px;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .btn-wa:hover {
+      background: #1DA462;
+      transform: scale(1.02);
+    }
+    .wa-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #25D366;
+      border-radius: 50px;
+      padding: 12px 26px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      z-index: 100;
+      cursor: pointer;
+      border: none;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    footer {
+      background: var(--blue-primary);
+      color: #F0F9FF;
+      padding: 1.8rem;
+      text-align: center;
+      margin-top: 2.5rem;
+      border-radius: 1.5rem 1.5rem 0 0;
+      font-weight: 500;
+    }
+
+    @media (max-width: 780px) {
+      .header-inner { flex-direction: column; text-align: center; }
+      .hero-simple h2 { font-size: 1.8rem; }
+      .container { padding: 0 20px; }
+      .section-title { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- EN-TÊTE CLASSIQUE -->
+<div class="header-classic">
+  <div class="container header-inner">
+    <div class="logo">
+      <h1>PORO <span>WATERPARK</span></h1>
+    </div>
+    <div class="contact-info">
+      <i class="fas fa-phone-alt"></i>
+      <a href="tel:+225 0759877030">0759877030</a>
+      <i class="fas fa-map-marker-alt"></i>
+      <span>Korhogo, non loin du feu de Mongaha, Côte d'Ivoire</span>
+    </div>
+  </div>
+</div>
+
+<!-- Bannière simple -->
+<div class="hero-simple">
+  <div class="container">
+    <h2>Bienvenue au paradis aquatique & ludique</h2>
+    <p>Piscine à vagues · Carrousel · Autos tamponneuses · Simulateur PlayStation® · Trampoline · Espace restauration</p>
+    <div class="badge-simple">
+      <i class="fas fa-water" style="color:#0077BE;"></i> Ouvert tous les jours
+      <i class="fas fa-sun" style="color:#FFC107;"></i>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- ACTIVITÉS AVEC IMAGES -->
+  <div>
+    <div class="section-title"><i class="fas fa-star"></i> Nos attractions phares</div>
+  </div>
+  <div class="activities-grid">
+    <!-- Piscine -->
+    <div class="card">
+      <div class="card-img" style="background-image: url('https://images.pexels.com/photos/260024/pexels-photo-260024.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+      <div class="card-info">
+        <h3><i class="fas fa-swimmer"></i> Piscine géante</h3>
+        <div class="price">1 000 F (mar., mer., jeu.)</div>
+        <div class="price">2 000 F (ven., sam., dim., férié)</div>
+        <div class="day-note">🌊 Vagues, jeux aquatiques, transats</div>
+      </div>
+    </div>
+    <!-- Carrousel -->
+    <div class="card">
+      <div class="card-img" style="background-image: url('https://images.pexels.com/photos/1563956/pexels-photo-1563956.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+      <div class="card-info">
+        <h3><i class="fas fa-horse"></i> Carrousel</h3>
+        <div class="price">500 F / séance</div>
+        <div class="day-note">🎠 Tous les jours – Magie & douceur</div>
+      </div>
+    </div>
+    <!-- Auto tamponneuse -->
+    <div class="card">
+      <div class="card-img" style="background-image: url('https://images.pexels.com/photos/1419651/pexels-photo-1419651.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+      <div class="card-info">
+        <h3><i class="fas fa-car-side"></i> Auto tamponneuse</h3>
+        <div class="price">1 000 F / séance</div>
+        <div class="day-note">🚗 Tous les jours – Sensations fortes</div>
+      </div>
+    </div>
+    <!-- Simulateur PlayStation -->
+    <div class="card">
+      <div class="card-img" style="background-image: url('https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+      <div class="card-info">
+        <h3><i class="fab fa-playstation"></i> Simulateur Pro</h3>
+        <div class="price">2 000 F / séance</div>
+        <div class="day-note">🎮 PS5, jeux immersifs – Tous les jours</div>
+      </div>
+    </div>
+    <!-- Trampoline -->
+    <div class="card">
+      <div class="card-img" style="background-image: url('https://images.pexels.com/photos/3660359/pexels-photo-3660359.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+      <div class="card-info">
+        <h3><i class="fas fa-basketball"></i> Trampoline Park</h3>
+        <div class="price">Nous consulter</div>
+        <div class="day-note">🤸 Tous les jours – Voltige & fun</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACKS THÊBLAGUE -->
+  <div class="packs-wrapper">
+    <h2 style="color: #0077BE; font-size: 1.8rem;"><i class="fas fa-tag" style="color:#2EBD6E;"></i> Packs THÊBLAGUE – Économisez en groupe</h2>
+    <p style="font-weight: 700; background: #FFE484; display: inline-block; padding: 0.2rem 1rem; border-radius: 30px; margin: 0.5rem 0;">🎟️ Valables vendredi, samedi, dimanche & jours fériés</p>
+    <div class="packs-grid">
+      <div class="pack-item">
+        <strong>🌊 Pack Aventurier</strong>
+        <span>Piscine + 2 autres jeux (sauf simulateur)</span>
+        <div class="pack-price">3 000 F</div>
+        <hr>
+        <span>⭐ Idéal pour une journée découverte</span>
+      </div>
+      <div class="pack-item">
+        <strong> Pack Explorateur (+10 ans)</strong>
+        <span>Piscine + 2 autres jeux (sauf simulateur)</span>
+        <div class="pack-price">4 000 F</div>
+        <hr>
+        <span>Fun intensifié pour ados & adultes</span>
+      </div>
+      <div class="pack-item">
+        <strong>Pack Famille (4 pers.)</strong>
+        <span>Piscine + 1 jeu au choix/personne + 4 sodas ou sucreries</span>
+        <div class="pack-price">15 000 F</div>
+        <hr>
+        <span>Économies & partage en famille</span>
+      </div>
+    </div>
+    <div class="info-pack">
+      <i class="fas fa-info-circle"></i> N.B. Les packs ne sont valables que vendredi, samedi, dimanche et jours fériés. Simulateur non inclus dans les packs Aventurier / Explorateur.
+    </div>
+  </div>
+
+  <!-- RESTAURATION -->
+  <div class="resto-card">
+    <h2 style="color: #08476cf2; display: flex; gap: 8px;"><i class="fas fa-utensils" style="color:#2EBD6E;"></i> Rafraîchissements & grillades</h2>
+    <div class="flex-food">
+      <div class="food-col">
+        <h4><i class="fas fa-candy-cane"></i> Douceurs & Boissons</h4>
+        <div class="food-row"><span>Sucrerie</span><span>1 000 F</span></div>
+        <div class="food-row"><span>Eau (bouteille)</span><span>500 F</span></div>
+        <div class="food-row"><span>Bière</span><span>1 000 F</span></div>
+        <div class="food-row"><span>Vin (sélection)</span><span>5 000 → 20 000 F</span></div>
+      </div>
+      <div class="food-col">
+        <h4><i class="fas fa-drumstick-bite"></i> Spécialités grill</h4>
+        <div class="food-row"><span>Poulet braisé</span><span>5 000 F</span></div>
+        <div class="food-row"><span>Poulet Kedjenou</span><span>5 000 F</span></div>
+        <div class="food-row"><span>Poisson braisé</span><span>5 000 / 6 000 / 7 000 / 8 000 F</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA WHATSAPP -->
+  <div style="background: #F0F9FF; border-radius: 1.8rem; padding: 1.8rem; text-align: center; margin: 2rem 0; border: 1px solid #CFE5F0;">
+    <h3 style="color: #0077BE; font-size: 1.5rem;">💬 Des questions ? Réservez ou discutez avec nous</h3>
+    <p style="margin: 0.6rem 0;">Infos sur les packs, le trampoline, les anniversaires ou réservation de groupe.</p>
+    <button id="whatsappMainBtn" class="btn-wa">
+      <i class="fab fa-whatsapp fa-lg"></i> En savoir plus & WhatsApp
+    </button>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 PORO WATERPARK – Piscine · Manèges · PlayStation® · Bar & Grill – 0759877030</p>
+  <p style="margin-top: 6px;"><i class="fas fa-tint"></i> Bleu · Jaune · Vert · Blanc – L'énergie du loisir</p>
+</footer>
+
+<!-- Bouton WhatsApp flottant -->
+<button id="whatsappFloatBtn" class="wa-float">
+  <i class="fab fa-whatsapp fa-lg"></i> WhatsApp | PORO
+</button>
+
+<script>
+  // Numéro WhatsApp international (Côte d'Ivoire)
+  const phoneNumber = "225759877030";
+  const defaultMsg = "Bonjour PORO WATERPARK ! 👋 Je souhaite des informations sur les activités, les packs ou réserver une journée. Merci.";
+
+  function openWhatsApp() {
+    const encoded = encodeURIComponent(defaultMsg);
+    const waLink = `https://wa.me/${phoneNumber}?text=${encoded}`;
+    window.open(waLink, '_blank');
+  }
+
+  const mainBtn = document.getElementById('whatsappMainBtn');
+  const floatBtn = document.getElementById('whatsappFloatBtn');
+  if (mainBtn) mainBtn.addEventListener('click', openWhatsApp);
+  if (floatBtn) floatBtn.addEventListener('click', openWhatsApp);
+</script>
+
+<script>
+  // Animation des cartes
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card, idx) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(12px)';
+    setTimeout(() => {
+      card.style.transition = 'all 0.4s ease';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }, idx * 80);
+  });
+</script>
+</body>
+</html>
