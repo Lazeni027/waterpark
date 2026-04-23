@@ -1,3 +1,4 @@
+/* ========== RESET & VARIABLES ========== */
 * {
   margin: 0;
   padding: 0;
@@ -7,12 +8,11 @@
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   background: #FFFFFF;
-  color: #01062c;
+  color: #04273c;
   scroll-behavior: smooth;
   line-height: 1.5;
 }
 
-/* ========== PALETTE VIVANTE : BLEU / JAUNE / VERT / BLANC ========== */
 :root {
   --blue-primary: #2431aa;
   --blue-light: #EFF9FF;
@@ -24,8 +24,40 @@ body {
   --gray-light: #F8FAFE;
   --dark-text: #04273c;
   --orange-accent: #FF8C42;
+  --transition-standard: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+/* ========== UTILITAIRES ACCESSIBILITÉ ========== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ========== SKIP LINK ========== */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--yellow-bright);
+  color: var(--blue-primary);
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 9999;
+  font-weight: 700;
+  border-radius: 0 0 4px 0;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* ========== CONTAINER ========== */
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -48,7 +80,7 @@ body {
 }
 .logo h1 {
   font-family: 'Space Grotesk', monospace;
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   font-weight: 800;
   color: white;
   letter-spacing: -0.5px;
@@ -63,6 +95,7 @@ body {
   background: rgba(13, 13, 14, 0.997);
   padding: 0.5rem 1.2rem;
   border-radius: 50px;
+  transition: var(--transition-standard);
 }
 .contact-info i {
   font-size: 1.2rem;
@@ -74,44 +107,458 @@ body {
   text-decoration: none;
   font-size: 1rem;
 }
+.contact-info a:focus-visible {
+  outline: 2px solid var(--yellow-bright);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
 .contact-info a:hover {
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-/* Hero bannière simple */
-.hero-simple {
-  background: linear-gradient(110deg, #74fde2fb 0%, #E6F7F0 100%);
-  padding: 2rem 0;
-  text-align: center;
-  border-bottom: 1px solid #D4EAF5;
-}
-.hero-simple h2 {
-  font-family: 'Space Grotesk', monospace;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--blue-primary);
-  margin-bottom: 0.5rem;
-}
-.hero-simple p {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #2c5a6e;
-  max-width: 700px;
+/* ========== HERO PARADIS ========== */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+.hero-paradis {
+  max-width: 750px;
   margin: 0 auto;
-}
-.badge-simple {
-  display: inline-flex;
-  gap: 12px;
-  background: white;
-  padding: 0.4rem 1.5rem;
-  border-radius: 60px;
-  margin-top: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  font-weight: 600;
-  color: var(--blue-primary);
+  position: relative;
+  padding: 35px 20px;
 }
 
-/* Titres de section */
+.living-frame {
+  position: relative;
+}
+
+/* Lianes extérieures */
+.liane {
+  position: absolute;
+  display: flex;
+  z-index: 3;
+  pointer-events: none;
+  gap: 6px;
+  justify-content: center;
+}
+
+.liane-top {
+  top: -22px;
+  left: 30px;
+  right: 30px;
+}
+
+.liane-bottom {
+  bottom: -22px;
+  left: 30px;
+  right: 30px;
+}
+
+.liane-left {
+  left: -22px;
+  top: 30px;
+  bottom: 30px;
+  flex-direction: column;
+}
+
+.liane-right {
+  right: -22px;
+  top: 30px;
+  bottom: 30px;
+  flex-direction: column;
+}
+
+.vine-segment {
+  font-size: 1.1rem;
+  display: inline-block;
+  animation: vineCrawl 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes vineCrawl {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(3deg); }
+}
+
+/* Cadre doré main levée */
+.hand-drawn-frame {
+  background: linear-gradient(135deg, #FFD700, #FFC107, #FFD700, #FFE082, #FFD700);
+  background-size: 200% 200%;
+  padding: 5px;
+  border-radius: 70px 40px 75px 35px / 45px 70px 40px 75px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+  transform: rotate(-0.6deg);
+  transition: all 0.3s ease;
+  animation: goldFlow 4s ease infinite;
+  will-change: transform;
+}
+
+@keyframes goldFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.hand-drawn-frame:hover {
+  transform: rotate(0deg) scale(1.01);
+}
+
+/* Cadre bleu vif */
+.inner-blue {
+  background: linear-gradient(135deg, #0099FF, #0077CC, #0099FF, #00AAFF);
+  background-size: 200% 200%;
+  padding: 5px;
+  border-radius: 67px 37px 72px 32px / 42px 67px 37px 72px;
+  animation: bluePulse 3s ease infinite;
+}
+
+@keyframes bluePulse {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Contenu blanc */
+.content {
+  background: linear-gradient(135deg, #ffffff, #fefefe, #ffffff);
+  border-radius: 64px 34px 69px 29px / 39px 64px 34px 69px;
+  padding: 1.8rem 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 480px;
+}
+
+/* PLANTES ET FLEURS À L'INTÉRIEUR */
+.indoor-plants {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Fleurs positionnées */
+.flower-top-left {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  font-size: 1.3rem;
+  animation: floatFlower 4s ease-in-out infinite;
+}
+
+.flower-top-right {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 1.3rem;
+  animation: floatFlower 4.5s ease-in-out infinite 0.5s;
+}
+
+.flower-top-center {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  animation: floatFlower 3.5s ease-in-out infinite 1s;
+}
+
+.flower-bottom-left {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  font-size: 1.3rem;
+  animation: floatFlower 5s ease-in-out infinite 0.3s;
+}
+
+.flower-bottom-right {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  font-size: 1.3rem;
+  animation: floatFlower 4.2s ease-in-out infinite 0.8s;
+}
+
+.flower-bottom-center {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  animation: floatFlower 3.8s ease-in-out infinite 1.2s;
+}
+
+.flower-mid-left {
+  position: absolute;
+  left: 10px;
+  top: 45%;
+  font-size: 1.1rem;
+  animation: swayFlower 3s ease-in-out infinite;
+}
+
+.flower-mid-left-2 {
+  position: absolute;
+  left: 15px;
+  top: 55%;
+  font-size: 1rem;
+  animation: swayFlower 3.5s ease-in-out infinite 0.5s;
+}
+
+.flower-mid-right {
+  position: absolute;
+  right: 10px;
+  top: 40%;
+  font-size: 1.1rem;
+  animation: swayFlower 3.2s ease-in-out infinite;
+}
+
+.flower-mid-right-2 {
+  position: absolute;
+  right: 15px;
+  top: 60%;
+  font-size: 1rem;
+  animation: swayFlower 3.7s ease-in-out infinite 0.7s;
+}
+
+/* Lianes grimpantes intérieures */
+.climbing-vine {
+  position: absolute;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  letter-spacing: 3px;
+  will-change: transform, opacity;
+}
+
+.vine-int-1 {
+  top: 30%;
+  left: 35px;
+  transform: rotate(-90deg);
+  animation: vineGrow 6s ease-in-out infinite;
+}
+
+.vine-int-2 {
+  bottom: 35%;
+  right: 35px;
+  transform: rotate(90deg);
+  animation: vineGrow 7s ease-in-out infinite 1s;
+}
+
+.vine-int-3 {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  font-size: 0.8rem;
+  opacity: 0.4;
+  animation: vineGrow 8s ease-in-out infinite 2s;
+}
+
+/* Fleurs flottantes */
+.floating-flower {
+  position: absolute;
+  font-size: 1rem;
+  animation: floatAround 8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.ff1 { top: 20%; left: 12%; animation-delay: 0s; }
+.ff2 { top: 15%; right: 15%; animation-delay: 1s; }
+.ff3 { bottom: 25%; left: 8%; animation-delay: 2s; }
+.ff4 { bottom: 20%; right: 10%; animation-delay: 3s; }
+.ff5 { top: 45%; left: 5%; animation-delay: 4s; }
+.ff6 { top: 55%; right: 5%; animation-delay: 5s; }
+.ff7 { top: 70%; left: 18%; animation-delay: 0.5s; }
+.ff8 { bottom: 40%; right: 20%; animation-delay: 1.5s; }
+
+/* Animations */
+@keyframes floatFlower {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(10deg); }
+}
+
+@keyframes swayFlower {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(15deg); }
+}
+
+@keyframes vineGrow {
+  0%, 100% { opacity: 0.3; letter-spacing: 3px; }
+  50% { opacity: 0.8; letter-spacing: 5px; }
+}
+
+@keyframes floatAround {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; }
+  25% { transform: translate(10px, -15px) rotate(10deg); opacity: 0.7; }
+  50% { transform: translate(-5px, -25px) rotate(-5deg); opacity: 0.9; }
+  75% { transform: translate(15px, -10px) rotate(15deg); opacity: 0.5; }
+}
+
+/* Ciel et nuages */
+.sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cloud {
+  position: absolute;
+  font-size: 1.6rem;
+  opacity: 0.3;
+  will-change: transform;
+}
+
+.cloud1 { left: 10px; top: 5px; animation: floatCloud 8s ease-in-out infinite; }
+.cloud2 { right: 20px; top: 0px; animation: floatCloud 10s ease-in-out infinite reverse; }
+.cloud3 { left: 40%; top: -5px; animation: floatCloud 12s ease-in-out infinite 2s; }
+
+@keyframes floatCloud {
+  0%, 100% { transform: translateX(0px); }
+  50% { transform: translateX(15px); }
+}
+
+/* Oiseaux */
+.birds {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.bird {
+  position: absolute;
+  font-size: 1.1rem;
+  opacity: 0.6;
+  will-change: transform, opacity;
+}
+
+.bird1 { right: 0; top: 0; animation: fly1 5s ease-in-out infinite; }
+.bird2 { right: 20px; top: 10px; animation: fly2 6s ease-in-out infinite 1s; }
+.bird3 { right: -10px; top: 5px; animation: fly3 7s ease-in-out infinite 2s; }
+
+@keyframes fly1 {
+  0% { transform: translateX(0) translateY(0); opacity: 0.6; }
+  50% { transform: translateX(-40px) translateY(-15px); opacity: 1; }
+  100% { transform: translateX(-80px) translateY(-30px); opacity: 0; }
+}
+
+@keyframes fly2 {
+  0% { transform: translateX(0) translateY(0); opacity: 0.5; }
+  50% { transform: translateX(-35px) translateY(-20px); opacity: 0.9; }
+  100% { transform: translateX(-70px) translateY(-40px); opacity: 0; }
+}
+
+@keyframes fly3 {
+  0% { transform: translateX(0) translateY(0); opacity: 0.5; }
+  50% { transform: translateX(-45px) translateY(-10px); opacity: 0.8; }
+  100% { transform: translateX(-90px) translateY(-25px); opacity: 0; }
+}
+
+/* Ange */
+.angel {
+  position: relative;
+  z-index: 10;
+  font-size: 1.2rem;
+  letter-spacing: 8px;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 0.5rem;
+  animation: angelFloat 3s ease-in-out infinite;
+}
+
+@keyframes angelFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Textes */
+h2, h3, h4, .list, .badge, .adresse, .stars {
+  position: relative;
+  z-index: 10;
+}
+
+h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #0077CC, #0099FF, #00AAFF);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0.5rem 0;
+}
+
+h3 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0099FF;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+h4 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0.5rem 0;
+}
+
+.list {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0077CC;
+  background: rgba(240, 251, 255, 0.9);
+  padding: 0.8rem;
+  border-radius: 35px;
+  margin: 0.6rem 0;
+  line-height: 1.6;
+  backdrop-filter: blur(5px);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #fffae6, #fff5d9);
+  padding: 0.45rem 1.3rem;
+  border-radius: 40px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #0077CC;
+  border: 1px solid #FFD700;
+  margin: 0.6rem 0;
+}
+
+.adresse {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0099FF;
+  background: rgba(230, 247, 255, 0.9);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  margin-top: 0.6rem;
+  border: 1px dashed #FFD700;
+}
+
+.stars {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  letter-spacing: 6px;
+  color: #FFD700;
+  opacity: 0.6;
+}
+
+/* ========== SECTIONS ========== */
 .section-title {
   font-family: 'Space Grotesk', monospace;
   font-size: 2rem;
@@ -127,7 +574,7 @@ body {
   margin-right: 8px;
 }
 
-/* GRILLE ACTIVITES */
+/* ========== GRILLE ACTIVITES ========== */
 .activities-grid {
   display: flex;
   flex-wrap: wrap;
@@ -138,9 +585,10 @@ body {
 .card {
   background: var(--white-pure);
   border-radius: 1.5rem;
-  width: 350px;
+  width: 100%;
+  max-width: 350px;
   overflow: hidden;
-  transition: 0.3s ease;
+  transition: transform var(--transition-standard), box-shadow var(--transition-standard);
   box-shadow: 0 12px 24px rgba(0, 119, 190, 0.08);
   border: 1px solid #E2EDF7;
 }
@@ -149,11 +597,18 @@ body {
   box-shadow: 0 24px 32px -12px rgba(0,119,190,0.25);
   border-color: var(--yellow-bright);
 }
-img {
+.card:focus-within {
+  outline: 3px solid var(--green-fresh);
+  outline-offset: 2px;
+}
+.card-img {
+  line-height: 0;
+  background-color: #f0f0f0;
+}
+.card-img img {
   width: 100%;
   height: 300px;
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
 }
 .card-info {
   padding: 1.2rem;
@@ -179,22 +634,24 @@ img {
   margin: 4px 0;
 }
 .day-note {
-  font-size: 0.72rem;
-  color: #4A6A7F;
+  font-size: 0.8rem;
+  color: #2c5a6e;
   margin-top: 6px;
   font-weight: 500;
 }
 
-/* Packs */
+/* ========== PACKS ========== */
 .packs-wrapper {
-  background: blue;
+  background: linear-gradient(145deg, #1a2580, #2431aa);
   border-radius: 1.8rem;
   padding: 1.8rem;
   margin: 2rem 0;
-  border: 1px solid #CFE5F0;
+  border: 1px solid #4d6bff;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
-.packs-grid h2 {
+.packs-wrapper h2 {
   color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 .packs-grid {
   display: grid;
@@ -208,6 +665,11 @@ img {
   border-radius: 1.2rem;
   border-left: 7px solid var(--green-fresh);
   box-shadow: 0 5px 12px rgba(0,0,0,0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.pack-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
 .pack-item strong {
   font-family: 'Space Grotesk', monospace;
@@ -236,7 +698,7 @@ hr {
   font-weight: 500;
 }
 
-/* Restauration */
+/* ========== RESTAURATION ========== */
 .resto-card {
   background: var(--white-pure);
   border-radius: 1.8rem;
@@ -262,31 +724,46 @@ hr {
 .food-row {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0;
+  padding: 0.7rem 0;
   border-bottom: 1px solid #F0E0C0;
   font-weight: 500;
 }
+.food-row span:last-child {
+  font-weight: 700;
+  color: var(--dark-text);
+}
 
-/* Bouton WhatsApp */
+/* ========== CTA WHATSAPP ========== */
+.cta-wa {
+  background: #F0F9FF;
+  border-radius: 1.8rem;
+  padding: 1.8rem;
+  text-align: center;
+  margin: 2rem 0;
+  border: 1px solid #CFE5F0;
+}
 .btn-wa {
   background: #25D366;
   border: none;
   padding: 14px 32px;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   border-radius: 50px;
   color: white;
   display: inline-flex;
   align-items: center;
   gap: 12px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: background 0.2s, transform 0.2s;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   font-family: 'Plus Jakarta Sans', sans-serif;
+  border: 1px solid #20b359;
 }
-.btn-wa:hover {
+.btn-wa:hover, .btn-wa:focus-visible {
   background: #1DA462;
   transform: scale(1.02);
+  outline: 2px solid white;
+  outline-offset: 2px;
 }
 .wa-float {
   position: fixed;
@@ -294,18 +771,27 @@ hr {
   right: 25px;
   background: #25D366;
   border-radius: 50px;
-  padding: 12px 26px;
+  padding: 12px 24px;
   font-weight: 700;
   display: flex;
   align-items: center;
   gap: 10px;
   color: white;
-  z-index: 100;
+  z-index: 1000;
   cursor: pointer;
   border: none;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease;
+  border: 1px solid #1DA462;
 }
+.wa-float:hover, .wa-float:focus-visible {
+  transform: scale(1.05) translateY(-3px);
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+/* ========== FOOTER ========== */
 footer {
   background: var(--blue-primary);
   color: #F0F9FF;
@@ -315,10 +801,63 @@ footer {
   border-radius: 1.5rem 1.5rem 0 0;
   font-weight: 500;
 }
+footer a {
+  color: var(--yellow-bright);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+footer a:hover {
+  color: white;
+}
 
+/* ========== RESPONSIVE ========== */
 @media (max-width: 780px) {
   .header-inner { flex-direction: column; text-align: center; }
-  .hero-simple h2 { font-size: 1.8rem; }
   .container { padding: 0 20px; }
-  .section-title { font-size: 1.6rem; }
+  .section-title { font-size: 1.8rem; }
+  .card-img img { height: 250px; }
+}
+
+@media (max-width: 680px) {
+  .hero-paradis { padding: 30px 15px; }
+  .liane { gap: 3px; }
+  .vine-segment { font-size: 0.85rem; }
+  .indoor-plants { display: none; }
+  .content { padding: 1.2rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 0.8rem; }
+  h4 { font-size: 1.1rem; }
+  .list { font-size: 0.7rem; }
+  .badge { font-size: 0.7rem; }
+  .adresse { font-size: 0.65rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-paradis { padding: 20px 10px; }
+  .list { font-size: 0.75rem; }
+  .wa-float { 
+    padding: 8px 16px; 
+    font-size: 0.9rem;
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+/* ========== ACCESSIBILITÉ : RÉDUCTION DE MOUVEMENT ========== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero-paradis .living-frame * {
+    animation: none !important;
+    transform: none !important;
+  }
+  .hero-paradis .indoor-plants {
+    display: none;
+  }
 }
