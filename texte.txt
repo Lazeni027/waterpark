@@ -1,0 +1,324 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: #FFFFFF;
+  color: #01062c;
+  scroll-behavior: smooth;
+  line-height: 1.5;
+}
+
+/* ========== PALETTE VIVANTE : BLEU / JAUNE / VERT / BLANC ========== */
+:root {
+  --blue-primary: #2431aa;
+  --blue-light: #EFF9FF;
+  --yellow-bright: #FFC107;
+  --yellow-soft: #FFF2CC;
+  --green-fresh: #2EBD6E;
+  --green-mint: #E0F7EA;
+  --white-pure: #FFFFFF;
+  --gray-light: #F8FAFE;
+  --dark-text: #04273c;
+  --orange-accent: #FF8C42;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+/* ========== EN-TÊTE CLASSIQUE ========== */
+.header-classic {
+  background: var(--blue-primary);
+  padding: 1rem 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-bottom: 3px solid var(--yellow-bright);
+}
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.logo h1 {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.5px;
+}
+.logo h1 span {
+  color: var(--yellow-bright);
+}
+.contact-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(13, 13, 14, 0.997);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+}
+.contact-info i {
+  font-size: 1.2rem;
+  color: var(--yellow-bright);
+}
+.contact-info a, .contact-info span {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+}
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* Hero bannière simple */
+.hero-simple {
+  background: linear-gradient(110deg, #74fde2fb 0%, #E6F7F0 100%);
+  padding: 2rem 0;
+  text-align: center;
+  border-bottom: 1px solid #D4EAF5;
+}
+.hero-simple h2 {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--blue-primary);
+  margin-bottom: 0.5rem;
+}
+.hero-simple p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c5a6e;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.badge-simple {
+  display: inline-flex;
+  gap: 12px;
+  background: white;
+  padding: 0.4rem 1.5rem;
+  border-radius: 60px;
+  margin-top: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  font-weight: 600;
+  color: var(--blue-primary);
+}
+
+/* Titres de section */
+.section-title {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 2rem 0 1.5rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 4px solid var(--yellow-bright);
+  display: inline-block;
+  color: var(--blue-primary);
+}
+.section-title i {
+  color: var(--green-fresh);
+  margin-right: 8px;
+}
+
+/* GRILLE ACTIVITES */
+.activities-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0 2.5rem;
+}
+.card {
+  background: var(--white-pure);
+  border-radius: 1.5rem;
+  width: 350px;
+  overflow: hidden;
+  transition: 0.3s ease;
+  box-shadow: 0 12px 24px rgba(0, 119, 190, 0.08);
+  border: 1px solid #E2EDF7;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 32px -12px rgba(0,119,190,0.25);
+  border-color: var(--yellow-bright);
+}
+img {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+}
+.card-info {
+  padding: 1.2rem;
+}
+.card-info h3 {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--blue-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.price {
+  background: var(--yellow-soft);
+  display: inline-block;
+  padding: 0.2rem 1rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #d42705;
+  margin: 4px 0;
+}
+.day-note {
+  font-size: 0.72rem;
+  color: #4A6A7F;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* Packs */
+.packs-wrapper {
+  background: blue;
+  border-radius: 1.8rem;
+  padding: 1.8rem;
+  margin: 2rem 0;
+  border: 1px solid #CFE5F0;
+}
+.packs-grid h2 {
+  color: white;
+}
+.packs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.8rem;
+  margin: 1.5rem 0;
+}
+.pack-item {
+  background: white;
+  padding: 1.2rem;
+  border-radius: 1.2rem;
+  border-left: 7px solid var(--green-fresh);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.03);
+}
+.pack-item strong {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 1.35rem;
+  color: var(--blue-primary);
+  display: block;
+}
+.pack-price {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #FF8C42;
+  margin: 8px 0;
+}
+hr {
+  margin: 10px 0;
+  border: 0;
+  height: 1px;
+  background: #FFE0A3;
+}
+.info-pack {
+  background: #FFF6E5;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Restauration */
+.resto-card {
+  background: var(--white-pure);
+  border-radius: 1.8rem;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border: 1px solid #DCF0E4;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.03);
+}
+.flex-food {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+  margin-top: 1rem;
+}
+.food-col {
+  flex: 1;
+  min-width: 200px;
+  background: #FEFCF5;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #FFE6B3;
+}
+.food-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #F0E0C0;
+  font-weight: 500;
+}
+
+/* Bouton WhatsApp */
+.btn-wa {
+  background: #25D366;
+  border: none;
+  padding: 14px 32px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border-radius: 50px;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.btn-wa:hover {
+  background: #1DA462;
+  transform: scale(1.02);
+}
+.wa-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #25D366;
+  border-radius: 50px;
+  padding: 12px 26px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  z-index: 100;
+  cursor: pointer;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+footer {
+  background: var(--blue-primary);
+  color: #F0F9FF;
+  padding: 1.8rem;
+  text-align: center;
+  margin-top: 2.5rem;
+  border-radius: 1.5rem 1.5rem 0 0;
+  font-weight: 500;
+}
+
+@media (max-width: 780px) {
+  .header-inner { flex-direction: column; text-align: center; }
+  .hero-simple h2 { font-size: 1.8rem; }
+  .container { padding: 0 20px; }
+  .section-title { font-size: 1.6rem; }
+}
